@@ -1,0 +1,16 @@
+sempre testar os diferentes tratamentos na prática e ver se realmente fizeram diferença, ou quais fizeram
+pois em alguns casos, alguns tratamentos pioram a predição
+
+1. valores incosistentes ex. idade < 0, peso < 0 -> fazer testes para ver se um valor que não deveria é menor que 0
+e usar umas das formas de resolver a consistência que vai desde exclusão de linha e coluna à preenchimento com média
+excluindo desse cálculo os valores inconsistentes
+
+2. valores faltantes ex. NaN -> (pd.isnull) + preenchimento com media
+
+3. escalonamento de atributos ex. atributo salário vai de 8000 à 30000 e atributo idade vai de 18 à 95. A escala de ambos é bem diferente
+então para não ter impacto negativo no algotirmo vamos tratar isso  classe StandardScaler
+
+4. Transformar variáveis categóricas em numéricas (transformar nomes não ordinais em números discretos)
+usamos o LabelEncoder, se for preciso variável dummy usamos o OneHotEncoder
+
+
