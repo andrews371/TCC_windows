@@ -14,3 +14,5 @@ então para não ter impacto negativo no algotirmo vamos tratar isso  classe Sta
 usamos o LabelEncoder, se for preciso variável dummy usamos o OneHotEncoder
 
 
+Obs.: ver o capítulo 11 do curso de machine learning que fala sobre as métricas e ir vendo o curso de machine learning
+que tem outros assuntos interessantes para o TCC como outliers e algoritmos como PCA
