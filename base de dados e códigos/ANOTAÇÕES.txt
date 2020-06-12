@@ -1,133 +1,36 @@
 PARA CADA PASSO VERIFICAR AS VARIÁVEIS QUE MAIS EXPLICARAM O RESULTADO FINAL
-
-PASSO 1
-
-1) rodar random forest na base sem elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-2) rodar árvore de decisão na base sem elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-3) se possível rodar outros algoritmos de machine learning na base sem elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-
-PASSO 2
-
-
-
-4) rodar random forest na base COM elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-5) rodar árvore de decisão na base COM elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-6) rodar outros algoritmos de machine learning na base COM elo rating e sem odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-
-
-PASSO 3
-
-
-
-7) rodar random forest na base sem elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-8) rodar árvore de decisão na base sem elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-9) rodar outros algoritmos de machine learning na base sem elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-
-
-PASSO 4
-
-
-
-10) rodar random forest na base COM elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-11) rodar árvore de decisão na base COM elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-12) rodar outros algoritmos de machine learning na base COM elo rating e COM odds trazendo a matriz de confusão e 
-fazendo tabela comparativa de precisão, recall, f1 socore e acurácia dos seguintes pré-processamentos:
-
-	a) rodar SEM escalonamento e SEM transformar variáveis categóricas em núméricas
-	b) rodar com escalonamento apenas
-	c) rodar com transformação de variáveis categóricas em numéricas apenas (usando o dummy se for preciso)
-	d) rodar com escalonamento e transformação de variáveis categóricas em numéricas (usando o dummy se for preciso)
-
-
-
-EXTRA: REFAZER ESSAS 12 ETAPAS COM SEUS PASSOS 1, 2, 3 E 4 TENDO COMO BASE PRINCIPAL A DO SITE "http://www.football-data.co.uk/" 
-E TAMBÉM TRAZER AS TABELAS COMPARATIVAS ENTRE DIFERENTES ALGORITMOS E PRÉ-PROCESSAMENTOS E AS VARIÁVEIS QUE MAIS EXPLICARAM O RESULTADO FINAL
+REFAZER OS MESMOS TESTES PARA A BASE DO SITE "http://www.football-data.co.uk/" 
+TAMBÉM TRAZER AS TABELAS COMPARATIVAS ENTRE DIFERENTES ALGORITMOS, MÉTRICAS E AS VARIÁVEIS QUE MAIS EXPLICARAM O RESULTADO FINAL
 
 OBS.: VER NOVAMENTE UM VÍDEO DE EDUARDO MENDES SOBRE WEBSCRAPING COM PYTHON APENAS PARA VER A ORGANIZAÇÃO DO CÓDIGO DELE
+
+
+# fórmulas à mão
+# acurácia
+acc = (matriz_final[0][0] +  matriz_final[1][1] +  matriz_final[2][2])\
+      / (matriz_final[0][0] +  matriz_final[1][1] +  matriz_final[2][2]\
+      + matriz_final[0][1] +  matriz_final[0][2]\
+      + matriz_final[1][0] +  matriz_final[1][2]\
+      + matriz_final[2][0] +  matriz_final[2][1])
+print(f'acurácia: {acc}')
+
+# precisão
+prec = ((matriz_final[0][0]/(matriz_final[0][0] + matriz_final[1][0] + matriz_final[2][0]))\
+       + (matriz_final[1][1]/(matriz_final[0][1] + matriz_final[1][1] + matriz_final[2][1]))\
+       + (matriz_final[2][2]/(matriz_final[0][2] + matriz_final[1][2] + matriz_final[2][2])))\
+       / 3
+print(f'precisão: {prec}')
+
+# recall
+rec = ((matriz_final[0][0]/(matriz_final[0][0] + matriz_final[0][1] + matriz_final[0][2]))\
+       + (matriz_final[1][1]/(matriz_final[1][0] + matriz_final[1][1] + matriz_final[1][2]))\
+       + (matriz_final[2][2]/(matriz_final[2][0] + matriz_final[2][1] + matriz_final[2][2])))\
+       / 3
+print(f'recall: {rec}')
+
+f1_score = (2 * prec * rec) / (prec + rec)
+print(f'f1-score: {f1_score}')
+
+
+trinta_testes_cruzada.py => tem todos os classificadores
+regra_trinta_testes = usa a biblioteca Orange e é um arquivo específico para trabalhar com regras
