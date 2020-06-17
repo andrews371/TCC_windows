@@ -1,6 +1,7 @@
 import pandas as pd
 
-base_completa = pd.read_csv('dados_durante_jogo_pre_processados.csv')
+base_completa = pd.read_csv('dados_meio_tempo_com_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
+#base_completa = pd.read_csv('dados_durante_jogo_pre_processados.csv')
 base = base_completa.copy()
 
 base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft',
@@ -15,17 +16,17 @@ base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft
                    'duelosganhosvisitanteft','disputasaereasvencidascasaft',
                    'disputasaereasvencidasvisitanteft'], axis=1, inplace=True)
 
-previsores = base.iloc[:, 0:32].values
-classe = base.iloc[:, 32].values
+previsores = base.iloc[:, 0:35].values
+classe = base.iloc[:, 35].values
 
-#from sklearn.preprocessing import LabelEncoder
-#labelencoder_X = LabelEncoder()
-#previsores[:, 0] = labelencoder_X.fit_transform(previsores[:, 0])
-#previsores[:, 1] = labelencoder_X.fit_transform(previsores[:, 1])
-#previsores[:, 31] = labelencoder_X.fit_transform(previsores[:, 31])
+from sklearn.preprocessing import LabelEncoder
+labelencoder_X = LabelEncoder()
+previsores[:, 0] = labelencoder_X.fit_transform(previsores[:, 0])
+previsores[:, 1] = labelencoder_X.fit_transform(previsores[:, 1])
+previsores[:, 31] = labelencoder_X.fit_transform(previsores[:, 31])
 
-#labelencoder_classe = LabelEncoder()
-#classe = labelencoder_classe.fit_transform(classe)
+labelencoder_classe = LabelEncoder()
+classe = labelencoder_classe.fit_transform(classe)
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -104,6 +105,6 @@ print(f'recall: {rec}')
 f1_score = (2 * prec * rec) / (prec + rec)
 print(f'f1-score: {f1_score}')
 
-previsoes_df = pd.DataFrame(previsoes)
+previsores_df = pd.DataFrame(previsores)
 classe_df = pd.DataFrame(classe)
 

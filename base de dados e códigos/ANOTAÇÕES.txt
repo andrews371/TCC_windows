@@ -1,4 +1,5 @@
 passar as odds para a minha base e refazer os cálculos
+ver a diferença e uso de key e row e aprender a usar a função lambda
 
 PARA CADA PASSO VERIFICAR AS VARIÁVEIS QUE MAIS EXPLICARAM O RESULTADO FINAL
 REFAZER OS MESMOS TESTES PARA A BASE DO SITE "http://www.football-data.co.uk/" 

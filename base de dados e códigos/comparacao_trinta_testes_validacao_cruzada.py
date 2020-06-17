@@ -1,6 +1,6 @@
 import pandas as pd
 
-base_completa = pd.read_csv('dados_durante_jogo_pre_processados.csv')
+base_completa = pd.read_csv('dados_meio_tempo_com_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
 base = base_completa.copy()
 
 base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft',
@@ -15,8 +15,8 @@ base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft
                    'duelosganhosvisitanteft','disputasaereasvencidascasaft',
                    'disputasaereasvencidasvisitanteft'], axis=1, inplace=True)
 
-previsores = base.iloc[:, 0:32].values
-classe = base.iloc[:, 32].values
+previsores = base.iloc[:, 0:35].values
+classe = base.iloc[:, 35].values
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -49,11 +49,11 @@ for i in range(30):
         #classificador = LogisticRegression()
         #classificador = SVC(kernel = 'rbf', random_state = 1, C = 2.0)
         #classificador = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p = 2)
-        #classificador = RandomForestClassifier(n_estimators=40, criterion='entropy', random_state=0)
-        classificador = MLPClassifier(verbose = True, max_iter = 1000,
-                              tol = 0.000010, solver='adam',
-                              hidden_layer_sizes=(100), activation = 'relu',
-                              batch_size=200, learning_rate_init=0.001)
+        classificador = RandomForestClassifier(n_estimators=40, criterion='entropy', random_state=0)
+        #classificador = MLPClassifier(verbose = True, max_iter = 1000,
+                              #tol = 0.000010, solver='adam',
+                              #hidden_layer_sizes=(100), activation = 'relu',
+                              #batch_size=200, learning_rate_init=0.001)
         
         
         classificador.fit(previsores[indice_treinamento], classe[indice_treinamento])
