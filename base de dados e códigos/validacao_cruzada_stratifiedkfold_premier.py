@@ -1,10 +1,10 @@
 import pandas as pd
 
-base_completa = pd.read_csv('dados_meio_tempo_com_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
+base = pd.read_csv('dados_meio_tempo_com_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
 #base_completa = pd.read_csv('dados_durante_jogo_pre_processados.csv')
-base = base_completa.copy()
+#base = base_completa.copy()
 
-base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft',
+'''base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft',
                    'resultadoht','resultadoft','totalgolsft','possebolacasaft',
                    'possebolavisitanteft','chutescasaft','chutesvisitanteft',
                    'chutesnogolcasaft','chutesnogolvisitanteft','chutesforagolcasaft',
@@ -15,6 +15,8 @@ base.drop(columns=['pais','campeonato','temporada','golscasaft','golsvisitanteft
                    'passescertoscasaft','passescertosvisitanteft','duelosganhoscasaft',
                    'duelosganhosvisitanteft','disputasaereasvencidascasaft',
                    'disputasaereasvencidasvisitanteft'], axis=1, inplace=True)
+'''
+pass
 
 previsores = base.iloc[:, 0:35].values
 classe = base.iloc[:, 35].values
@@ -43,21 +45,21 @@ import numpy as np
 
 # exemplo do uso de np.zeros e shape
 # cria um vetor com 5 posições iniciando todas com zero
-teste1 = np.zeros(5)
+#teste1 = np.zeros(5)
 # cria uma matriz com 5 posições e 1 coluna iniciando todas as posições com zero
-teste2 = np.zeros(shape=(5,1))
+#teste2 = np.zeros(shape=(5,1))
 
 # agora vamos usar esse raciocínio para os previsores
-previsores.shape # aqui mostra a estrutura de previsores
-previsores.shape[0] # na posição 0 temos o número de linhas
+#previsores.shape # aqui mostra a estrutura de previsores
+#previsores.shape[0] # na posição 0 temos o número de linhas
 # demonstração da utilização de np.zeros e shape
-b = np.zeros(shape=(previsores.shape[0], 1))
+#b = np.zeros(shape=(previsores.shape[0], 1))
 
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 kfold = StratifiedKFold(n_splits = 10, shuffle = True, random_state = 0)
-resultados = []
+acuracia_lista = []
 matrizes = []
 for indice_treinamento, indice_teste in kfold.split(previsores,
                                                     np.zeros(shape=(classe.shape[0], 1))):
@@ -65,17 +67,17 @@ for indice_treinamento, indice_teste in kfold.split(previsores,
     classificador = RandomForestClassifier(n_estimators=40, criterion='entropy', random_state=0)
     classificador.fit(previsores[indice_treinamento], classe[indice_treinamento]) 
     previsoes = classificador.predict(previsores[indice_teste])
-    precisao = accuracy_score(classe[indice_teste], previsoes)
+    acuracia_parcial = accuracy_score(classe[indice_teste], previsoes)
     matrizes.append(confusion_matrix(classe[indice_teste], previsoes))
-    resultados.append(precisao)
+    acuracia_lista.append(acuracia_parcial)
 
-matriz_final = np.mean(matrizes, axis = 0)
-resultados = np.asarray(resultados)
-resultados.mean() # acurácia da média das 10 matrizes de confusão  
-resultados.std()
+matriz_final = np.mean(matrizes, axis = 0) # média das 10 matrizes de confusão  
+acuracia_lista = np.asarray(acuracia_lista)
+acuracia_media = acuracia_lista.mean() 
+acuracia_std = acuracia_lista.std()
 
-print(f'resultados.mean(): {resultados.mean()}')
-print(f'resultados.std(): {resultados.std()}')
+print(f'acurácia média: {acuracia_media}')
+print(f'acurácia std: {acuracia_std}')
 print('\n')
 
 # fórmulas à mão
