@@ -21,23 +21,23 @@ pass
 previsores = base.iloc[:, 0:35].values
 classe = base.iloc[:, 35].values
 
-from sklearn.preprocessing import LabelEncoder
-labelencoder_X = LabelEncoder()
-previsores[:, 0] = labelencoder_X.fit_transform(previsores[:, 0])
-previsores[:, 1] = labelencoder_X.fit_transform(previsores[:, 1])
-previsores[:, 31] = labelencoder_X.fit_transform(previsores[:, 31])
+#from sklearn.preprocessing import LabelEncoder
+#labelencoder_X = LabelEncoder()
+#previsores[:, 0] = labelencoder_X.fit_transform(previsores[:, 0])
+#previsores[:, 1] = labelencoder_X.fit_transform(previsores[:, 1])
+#previsores[:, 31] = labelencoder_X.fit_transform(previsores[:, 31])
 
-labelencoder_classe = LabelEncoder()
-classe = labelencoder_classe.fit_transform(classe)
+#labelencoder_classe = LabelEncoder()
+#classe = labelencoder_classe.fit_transform(classe)
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 column_tranformer = ColumnTransformer([('one_hot_encoder', OneHotEncoder(), [0, 1, 31])],remainder='passthrough')
 previsores = column_tranformer.fit_transform(previsores)
 
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-previsores = scaler.fit_transform(previsores)
+#from sklearn.preprocessing import StandardScaler
+#scaler = StandardScaler()
+#previsores = scaler.fit_transform(previsores)
 
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
@@ -70,6 +70,9 @@ for indice_treinamento, indice_teste in kfold.split(previsores,
     acuracia_parcial = accuracy_score(classe[indice_teste], previsoes)
     matrizes.append(confusion_matrix(classe[indice_teste], previsoes))
     acuracia_lista.append(acuracia_parcial)
+
+
+print(previsores)
 
 matriz_final = np.mean(matrizes, axis = 0) # média das 10 matrizes de confusão  
 acuracia_lista = np.asarray(acuracia_lista)
@@ -109,4 +112,43 @@ print(f'f1-score: {f1_score}')
 
 previsores_df = pd.DataFrame(previsores)
 classe_df = pd.DataFrame(classe)
+
+
+# Apresentação dos atributos que mais cocntribuem para o resultado final
+
+'''export.export_graphviz(classificador,
+ out_file = 'Random_Forest.dot',
+ feature_names = ['time_casa','time_visitante','golscasaht','golsvisitanteht','totalgolsht',\
+                  'sebolacasaht','possebolavisitanteht','chutescasaht','chutesvisitanteht',\
+                  'tesnogolcasaht','chutesnogolvisitanteht','chutesforagolcasaht',\
+                  'chutesforagolvisitanteht','chutesbloqueadoscasaht','chutesbloqueadosvisitanteht',\
+                  'cornercasaht','cornervisitanteht','chutesdentroareacasaht',\
+                  'chutesdentroareavisitanteht','chutesforaareacasaht','chutesforaareavisitanteht',\
+                  'defesasgoleirocasaht','defesasgoleirovisitanteht','passescasaht',\
+                  'passesvisitanteht','passescertoscasaht','passescertosvisitanteht',\
+                  'duelosganhoscasaht','duelosganhosvisitanteht','disputasaereasvencidascasaht',\
+                  'disputasaereasvencidasvisitanteht','vencedorht','PSH','PSD','PSA'],
+ class_names = classificador.classes_,
+ filled = True,
+ leaves_parallel=True)'''
+pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

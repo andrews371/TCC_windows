@@ -6,6 +6,7 @@ Created on Sun Jun 14 20:13:38 2020
 """
 
 import pandas as pd
+import numpy as np
 import glob
 
 # abrir vários arquivos do mesmo tipo e juntar vários dataframes
@@ -25,10 +26,12 @@ import glob
 
 
 base_com_odds = pd.read_csv('base_com_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
-base_sem_odds = pd.read_csv('base_sem_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
+#base_sem_odds = pd.read_csv('base_sem_odds.csv').drop(['Unnamed: 0'], axis=1).sample(frac=1).reset_index(drop=True)
+
 
 # calculando qual o percentual de vitória do time com qualquer grau de favoritismo
 # calculando só para time jogando em casa, só para time jogando fora, só para empate
+
 percentualHomeoddsMenor = (base_com_odds.loc[(base_com_odds['PSH'] < base_com_odds['PSD'])\
                                    & (base_com_odds['PSH'] < base_com_odds['PSA'])\
                                    & (base_com_odds['FTR'] == 'H'), 'FTR']\
@@ -43,32 +46,36 @@ percentualAwayoddsMenor = (base_com_odds.loc[(base_com_odds['PSA'] < base_com_od
                                    & (base_com_odds['PSA'] < base_com_odds['PSD'])\
                                    & (base_com_odds['FTR'] == 'A'), 'FTR']\
                                    .count() / len(base_com_odds)) * 100
-
-                                            
+                                             
+                                                                                          
 # prevendo sempre vitória de quem tem a odds mais baixa, seja time jogando em casa 
 # ou visitante ou prevendo empate 
 
 percentualGeraloddsMenor = percentualHomeoddsMenor + percentualDrawoddsMenor\
-                          + percentualAwayoddsMenor                                                                          
+                          + percentualAwayoddsMenor   
 
 
-# vitórias de quem tem odds menor que 2 (mais de 50% de chances segundo bookmakers)
-# cálculo separado por time da casa e visitante
-                          
-percetualHomeFavorito = base_com_odds.loc[(base_com_odds['PSH'] < 2)\
-                                          & (base_com_odds['FTR'] == 'H'), 'FTR']\
-                                          .count() / len(base_com_odds) * 100
-                                          
-percentualAwayFavorito = base_com_odds.loc[(base_com_odds['PSA'] < 2)\
-                                          & (base_com_odds['FTR'] == 'A'), 'FTR']\
-                                          .count() / len(base_com_odds) * 100
+# simulando apostas em times com odds mais baixas
 
-
-# vitórias de quem tem a odds menor que 2 (mais de 50% de chances segundo bookmakers)
-# podendo ser time da casa ou visitante sem separação
-                                          
-percentualGeralFavorito = percetualHomeFavorito + percentualAwayFavorito  
-                              
+print('\n')
+apostas_realizadas = 0
+apostas_vencidas = 0
+for key,row in base_com_odds.iterrows():
+    if (row['PSH'] < row['PSA']) and (row['PSH'] < row['PSD']):
+        apostas_realizadas += 1
+        if row['FTR'] == 'H':
+            apostas_vencidas += 1
+    
+    elif (row['PSA'] < row['PSH']) and (row['PSA'] < row['PSD']):
+        apostas_realizadas += 1
+        if row['FTR'] == 'A':
+            apostas_vencidas += 1
+            
+percentual_acerto = (apostas_vencidas / apostas_realizadas) * 100
+print(f'apostas realizadas {apostas_realizadas}')
+print(f'apostas vencidas {apostas_vencidas}')
+print(f'percentual de acerto {percentual_acerto}')
+    
 
 # contando qual o percentual de vitórias do time da casa,
 # percentual de empate e de vitórias do time visitante
@@ -82,8 +89,9 @@ percentualDrawVitorias = (base_com_odds.loc[base_com_odds['FTR'] == 'D', 'FTR']\
 percentualAwayVitorias = (base_com_odds.loc[base_com_odds['FTR'] == 'A', 'FTR']\
                          .count() / len(base_com_odds)) * 100
 
+# Impressões
 
-for key1,row1 in base_sem_odds.iterrows():
+'''for key1,row1 in base_sem_odds.iterrows():
     for key2,row2 in base_com_odds.iterrows():
         if (row1['time_casa'] == row2['HomeTeam'] and row1['time_visitante'] == row2['AwayTeam'])\
         and (row1['temporada'] == row2['temporada']):
@@ -95,7 +103,7 @@ base_sem_odds.to_csv('dados_meio_tempo_com_odds.csv')
                           
 # Adicionando nova coluna ao dataframe e fazendo adiçáo de valores
 
-'''for key,row in base_com_odds.iterrows():
+for key,row in base_com_odds.iterrows():
     if row['Date'] > '2015-07-31' and row['Date'] < '2016-06-01':
         base_com_odds.loc[key, 'temporada'] = '2015-2016'
     elif row['Date'] > '2016-07-31' and row['Date'] < '2017-06-01':

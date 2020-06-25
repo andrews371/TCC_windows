@@ -77,4 +77,6 @@ for i in range(30):
 resultados30 = np.asarray(resultados30)
 for i in range(resultados30.size):
     print(resultados30[i])
+    
+    
 
