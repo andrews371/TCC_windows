@@ -92,6 +92,21 @@ test.append(0)
 print(test[0])
 
 
+# OUTRA FORMA DE BUSCAR CLASSIFICADORES MAIS IMPORTANTES
+# O RETORNO SÃO OS ÍNDICES
+
+# classificador é quem recebe o algoritmo de machine learning
+'''importancias = classificador.feature_importances_
+classificador = np.argsort(importancias)[::-1] # o ::-1 inverte a ordem colocando em ordem descendente
+print(classificador)
+
+# resgatando o nome das colunas pelos índices - modo 1
+indices = base.iloc[:,[31,2]].columns
+print(indices)
+
+# resgatando o nome das colunas pelos índices - modo 2
+indices = base.iloc[:,classificador].columns'''
+pass
 
 
 

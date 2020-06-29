@@ -1,0 +1,8 @@
+classifier_name,dataset_name,accuracy
+Arvore de decisao,dados_meio_tempo_com_odds,0.5362
+Naive Bayes,dados_meio_tempo_com_odds,0.5483
+ODDS,dados_meio_tempo_com_odds,0.5542
+KNN,dados_meio_tempo_com_odds,0.5574
+RNA,dados_meio_tempo_com_odds,0.5868
+SVM,dados_meio_tempo_com_odds,0.6276
+Random Forest,dados_meio_tempo_com_odds,0.6403
