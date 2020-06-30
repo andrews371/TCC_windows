@@ -67,7 +67,7 @@ import numpy as np
 #b = np.zeros(shape=(previsores.shape[0], 1))
 
 from sklearn.model_selection import StratifiedKFold
-import view_functions
+import display_function
 
 def plot_confusion_matrix(conf_matrix, classes=None,
                           normalize=False,
@@ -135,12 +135,16 @@ for indice_treinamento, indice_teste in kfold.split(previsores,
     previsoes = classificador.predict(previsores[indice_teste])
     acuracia_parcial = accuracy_score(classe[indice_teste], previsoes)
     cm = confusion_matrix(classe[indice_teste], previsoes)
-    matrizes.append(calculo_matriz_confusao(confusion_matrix(classe[indice_teste], previsoes),\
-                    classes_))
+    matrizes.append(confusion_matrix(classe[indice_teste], previsoes))
+    #matrizes.append(calculo_matriz_confusao(confusion_matrix(classe[indice_teste], previsoes),\
+    #                classes_))
     acuracia_lista.append(acuracia_parcial)
     
+    
 matriz_final = np.mean(matrizes, axis = 0) # média das 10 matrizes de confusão  
-view_functions.plot_confusion_matrix(matriz_final, target_names)
+display_function.plot_confusion_matrix(matriz_final, target_names)
+
+#calculo_matriz_confusao(matriz_final,classes_)
 
 acuracia_lista = np.asarray(acuracia_lista)
 acuracia_media = acuracia_lista.mean() 
